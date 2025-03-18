@@ -4492,6 +4492,7 @@ lib.composeManyExtensions [
         "cublas"
         "cuda-cupti"
         "cuda-curand"
+        "cuda-nvcc"
         "cuda-nvrtc"
         "cuda-runtime"
         "cudnn"
@@ -4509,6 +4510,8 @@ lib.composeManyExtensions [
       postFixup = ''
         rm -rf $out/${self.python.sitePackages}/nvidia/{__pycache__,__init__.py}
         ln -sfn $out/${self.python.sitePackages}/nvidia/*/lib/lib*.so* $out/lib
+        mkdir $out/bin
+        ln -sfn $out/${self.python.sitePackages}/nvidia/*/bin/* $out/bin
       '';
     })))
 ]
